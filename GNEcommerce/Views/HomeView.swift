@@ -59,7 +59,29 @@ struct HomeView: View {
                 .padding(.top)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(viewModel.featuredProducts) { product in
+                        ForEach(viewModel.fetchProducts(filter: .isFeatured)) { product in
+                            ProductRow(product: product)
+                        }
+                    }
+                }
+                .padding(.leading, 5)
+                HStack {
+                    Text("Highly Rated")
+                        .font(.system(size: 15, weight: .semibold))
+                        .padding(.leading)
+                    Spacer()
+                    NavigationLink {
+                        ProductGridView()
+                    } label: {
+                        Text("View All")
+                            .font(.system(size: 15, weight: .bold))
+                            .padding(.trailing)
+                    }
+                }
+                .padding(.top)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.fetchProducts(filter: .highlyRated)) { product in
                             ProductRow(product: product)
                         }
                     }

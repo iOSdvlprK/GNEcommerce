@@ -88,8 +88,18 @@ struct HomeView: View {
                         }
                     }
                     .padding(.leading, 5)
+                    Button(action: {
+                        viewModel.showAllProducts = true
+                    }, label: {
+                        Text("See Full Catalog")
+                    })
+                    .buttonStyle(PrimaryButtonStyle())
+                    .padding(.horizontal)
                     Spacer()
                 }
+            }
+            .navigationDestination(isPresented: $viewModel.showAllProducts) {
+                ProductGridView()
             }
         }
     }

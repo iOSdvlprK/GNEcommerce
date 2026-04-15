@@ -13,5 +13,6 @@ extension Image {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: UIScreen.current?.bounds.width, height: 250)
+            .clipped()
     }
 }

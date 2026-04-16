@@ -11,8 +11,20 @@ import SwiftUI
 struct GNEcommerceApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .preferredColorScheme(.light)
+            TabView {
+                Tab("Home", systemImage: "house.fill") {
+                    HomeView()
+                }
+                
+                Tab("Cart", systemImage: "cart.fill") {
+                    CartView()
+                }
+                
+                Tab("Favorites", systemImage: "heart.fill") {
+                    FavoritesView()
+                }
+            }
+            .preferredColorScheme(.light)
         }
     }
 }

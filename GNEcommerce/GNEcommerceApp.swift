@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct GNEcommerceApp: App {
+    @State var favoritesManager = FavoritesManager()
+    
     var body: some Scene {
         WindowGroup {
             TabView {
@@ -24,6 +26,7 @@ struct GNEcommerceApp: App {
                     FavoritesView()
                 }
             }
+            .environment(favoritesManager)
             .preferredColorScheme(.light)
         }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct GNEcommerceApp: App {
     @State var favoritesManager = FavoritesManager()
+    @State var cartManager = CartManager()
     
     var body: some Scene {
         WindowGroup {
@@ -27,6 +28,7 @@ struct GNEcommerceApp: App {
                 }
             }
             .environment(favoritesManager)
+            .environment(cartManager)
             .preferredColorScheme(.light)
         }
     }

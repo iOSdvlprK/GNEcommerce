@@ -10,6 +10,7 @@ import SwiftUI
 @Observable
 class CartManager {
     var productsInCart: [ProductInCart] = []
+    var addToCartAlert = false
     
     func addToCart(product: Product) {
         if let indexOfProductInCart = productsInCart.firstIndex(where: { $0.id == product.id }) {
@@ -20,5 +21,6 @@ class CartManager {
         } else {
             productsInCart.append(ProductInCart(product: product, quantity: 1))
         }
+        addToCartAlert = true
     }
 }

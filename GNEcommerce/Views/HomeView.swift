@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var viewModel = HomeViewModel()
+    @Environment(CartManager.self) var cartManager
     
     fileprivate var NavigationBarView: some View {
         HStack {
@@ -24,13 +25,15 @@ struct HomeView: View {
                 ZStack {
                     Image(systemName: "cart.fill")
                         .foregroundStyle(.black)
-                    ZStack {
-                        Circle()
-                        Text("1")
-                            .font(.system(size: 14))
-                            .foregroundStyle(.white)
+                    if cartManager.displayTotalCartQuantity > 0 {
+                        ZStack {
+                            Circle()
+                            Text("\(cartManager.displayTotalCartQuantity)")
+                                .font(.system(size: 14))
+                                .foregroundStyle(.white)
+                        }
+                        .offset(CGSize(width: 10, height: -10))
                     }
-                    .offset(CGSize(width: 10, height: -10))
                 }
             })
             .padding(.trailing)
@@ -107,4 +110,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environment(CartManager())
 }

@@ -11,25 +11,34 @@ import SwiftUI
 struct GNEcommerceApp: App {
     @State var favoritesManager = FavoritesManager()
     @State var cartManager = CartManager()
+    @State var tabManager = TabManager()
     
     var body: some Scene {
         WindowGroup {
-            TabView {
-                Tab("Home", systemImage: "house.fill") {
-                    HomeView()
-                }
-                
-                Tab("Cart", systemImage: "cart.fill") {
-                    CartView()
-                }
-                
-                Tab("Favorites", systemImage: "heart.fill") {
-                    FavoritesView()
-                }
+            TabView(selection: $tabManager.selectedTab) {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                    .tag(1)
+
+                CartView()
+                    .tabItem {
+                        Label("Cart", systemImage: "cart.fill")
+                    }
+                    .tag(2)
+
+                FavoritesView()
+                    .tabItem {
+                        Label("Favorites", systemImage: "heart.fill")
+                    }
+                    .tag(3)
             }
             .environment(favoritesManager)
             .environment(cartManager)
+            .environment(tabManager)
             .preferredColorScheme(.light)
         }
     }
 }
+

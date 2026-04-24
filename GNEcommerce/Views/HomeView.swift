@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State var viewModel = HomeViewModel()
     @Environment(CartManager.self) var cartManager
+    @Environment(TabManager.self) var tabManager
     
     fileprivate var NavigationBarView: some View {
         HStack {
@@ -20,7 +21,7 @@ struct HomeView: View {
         }
         .overlay(alignment: .trailing) {
             Button(action: {
-                
+                tabManager.selectedTab = 2
             }, label: {
                 ZStack {
                     Image(systemName: "cart.fill")
@@ -111,4 +112,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environment(CartManager())
+        .environment(TabManager())
 }

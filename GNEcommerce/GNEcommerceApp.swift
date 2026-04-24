@@ -16,23 +16,15 @@ struct GNEcommerceApp: App {
     var body: some Scene {
         WindowGroup {
             TabView(selection: $tabManager.selectedTab) {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                    .tag(1)
-
-                CartView()
-                    .tabItem {
-                        Label("Cart", systemImage: "cart.fill")
-                    }
-                    .tag(2)
-
-                FavoritesView()
-                    .tabItem {
-                        Label("Favorites", systemImage: "heart.fill")
-                    }
-                    .tag(3)
+                Tab("Home", systemImage: "house.fill", value: TabManager.Tab.home) {
+                    HomeView()
+                }
+                Tab("Cart", systemImage: "cart.fill", value: TabManager.Tab.cart) {
+                    CartView()
+                }
+                Tab("Favorites", systemImage: "heart.fill", value: TabManager.Tab.favorites) {
+                    FavoritesView()
+                }
             }
             .environment(favoritesManager)
             .environment(cartManager)

@@ -9,5 +9,8 @@ import SwiftUI
 
 @Observable
 class TabManager {
-    var selectedTab = 1
+    enum Tab {
+        case home, cart, favorites
+    }
+    var selectedTab: Tab = .home
 }

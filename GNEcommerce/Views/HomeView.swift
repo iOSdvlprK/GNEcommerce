@@ -21,7 +21,7 @@ struct HomeView: View {
         }
         .overlay(alignment: .trailing) {
             Button(action: {
-                tabManager.selectedTab = 2
+                tabManager.selectedTab = .cart
             }, label: {
                 ZStack {
                     Image(systemName: "cart.fill")

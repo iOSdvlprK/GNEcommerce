@@ -17,25 +17,19 @@ class CartManager {
     }
     
     func addToCart(product: Product) {
-        if let indexOfProductInCart = productsInCart.firstIndex(where: { $0.id == product.id }) {
-            let currentQuantity = productsInCart[indexOfProductInCart].quantity
-            let newQuantity = currentQuantity + 1
-            let updatedProductInCart = ProductInCart(product: product, quantity: newQuantity)
-            productsInCart[indexOfProductInCart] = updatedProductInCart
+        if let index = productsInCart.firstIndex(where: { $0.id == product.id }) {
+            productsInCart[index].quantity += 1
         } else {
             productsInCart.append(ProductInCart(product: product, quantity: 1))
         }
     }
     
     func removeFromCart(product: Product) {
-        if let indexOfProductInCart = productsInCart.firstIndex(where: { $0.id == product.id }) {
-            let currentQuantity = productsInCart[indexOfProductInCart].quantity
-            if currentQuantity > 1 {
-                let newQuantity = currentQuantity - 1
-                let updatedProductInCart = ProductInCart(product: product, quantity: newQuantity)
-                productsInCart[indexOfProductInCart] = updatedProductInCart
+        if let index = productsInCart.firstIndex(where: { $0.id == product.id }) {
+            if productsInCart[index].quantity > 1 {
+                productsInCart[index].quantity -= 1
             } else {
-                productsInCart.remove(at: indexOfProductInCart)
+                productsInCart.remove(at: index)
             }
         }
     }

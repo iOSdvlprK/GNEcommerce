@@ -47,6 +47,9 @@ struct CartView: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 30)
+                PaymentButton(action: cartManager.pay)
+                    .frame(height: 40)
+                    .padding(.horizontal, 25)
             }
         }
     }
